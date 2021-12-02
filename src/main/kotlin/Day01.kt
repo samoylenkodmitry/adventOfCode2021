@@ -2,8 +2,8 @@ package day01
 
 import java.io.File
 
-val input = File("inputs/day01.txt").readLines().map { it.toInt() }
-val test = """
+private val input = File("inputs/day01.txt").readLines().map { it.toInt() }
+private val test = """
     199
     200
     208
