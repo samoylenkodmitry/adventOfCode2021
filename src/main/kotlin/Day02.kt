@@ -1,11 +1,10 @@
 package day01
 
 import java.io.File
-import kotlin.math.max
 
 private val input = File("inputs/day02.txt").readLines()
 	.asSequence()
-	.map { it.split(" ") }.map { Command(it[0], it[1].toInt()) }
+	.map { it.split(" ") }
 
 private val test = """
 	forward 5
@@ -15,9 +14,24 @@ private val test = """
 	down 8
 	forward 2
 """.trimIndent().splitToSequence("\n").map { it.trim() }
-	.map { it.split(" ") }.map { Command(it[0], it[1].toInt()) }
+	.map { it.split(" ") }
 
-class Command(val what: String, val s: Int)
+fun <Context> List<String>.newCommand(f: Exe<Context>, u: Exe<Context>, d: Exe<Context>): Command<Context> {
+	val s = this[1].toInt()
+	return when (this[0]) {
+		"forward" -> Command(s, f)
+		"up" -> Command(s, u)
+		else -> Command(s, d)
+	}
+}
+
+fun interface Exe<Context> {
+	fun exe(s: Int, ctx: Context)
+}
+
+class Command<Context>(val s: Int, val f: Exe<Context>) {
+	fun exe(c: Context) = f.exe(s, c)
+}
 
 fun main() {
 	partOne(test)
@@ -26,32 +40,35 @@ fun main() {
 	partTwo(input)
 }
 
-private fun partOne(w: Sequence<Command>) {
-	var h = 0
-	var d = 0
-	w.forEach {
-		when (it.what) {
-			"forward" -> h += it.s
-			"up" -> d = max(0, d - it.s)
-			"down" -> d += it.s
-		}
-	}
-	println("h:$h d:$d mul:${h * d}")
+private fun partOne(w: Sequence<List<String>>) {
+	data class Ctx1(var h: Int, var d: Int)
+
+	val f = Exe { s: Int, ctx: Ctx1 -> ctx.h += s }
+	val u = Exe { s: Int, ctx: Ctx1 -> ctx.d -= s }
+	val d = Exe { s: Int, ctx: Ctx1 -> ctx.d += s }
+	val ctx = Ctx1(0, 0)
+	w
+		.map { it.newCommand(f, u, d) }
+		.forEach { it.exe(ctx) }
+
+	println("h:${ctx.h} d:${ctx.d} mul:${ctx.h * ctx.d}")
 }
 
-private fun partTwo(w: Sequence<Command>) {
-	var h = 0
-	var d = 0
-	var aim = 0
-	w.forEach {
-		when (it.what) {
-			"forward" -> {
-				h += it.s
-				d += aim * it.s
-			}
-			"up" -> aim -= it.s
-			"down" -> aim += it.s
+private fun partTwo(w: Sequence<List<String>>) {
+	data class Ctx2(var h: Int, var d: Int, var aim: Int)
+
+	val f = Exe { s: Int, ctx: Ctx2 ->
+		ctx.apply {
+			h += s
+			d += aim * s
 		}
 	}
-	println(" h:$h d:$d aim: $aim mul: ${h * d}")
+	val u = Exe { s: Int, ctx: Ctx2 -> ctx.aim -= s }
+	val d = Exe { s: Int, ctx: Ctx2 -> ctx.aim += s }
+	val ctx = Ctx2(0, 0, 0)
+	w
+		.map { it.newCommand(f, u, d) }
+		.forEach { it.exe(ctx) }
+
+	println("h:${ctx.h} d:${ctx.d} mul:${ctx.h * ctx.d}")
 }
