@@ -89,14 +89,14 @@ class Board(val lines: List<String>) {
 		val s = solved()
 		if (s) {
 			alreadySolved = true
-			var score = sum * num;
+			val score = sum * num
 			println("score = $score at num $num for board ${lines.joinToString(separator = "\n")}")
 
 		}
 		return s
 	}
 
-	fun solved(): Boolean {
+	private fun solved(): Boolean {
 		if (rows.any { it.all { it < 0 } }) return true
 		for (x in 0..4) {
 			var allVisited = true
@@ -108,7 +108,7 @@ class Board(val lines: List<String>) {
 			}
 			if (allVisited) return true
 		}
-		return false;
+		return false
 	}
 }
 
