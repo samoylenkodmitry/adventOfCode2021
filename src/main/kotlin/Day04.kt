@@ -1,4 +1,4 @@
-package day01
+package day04
 
 import java.io.File
 
@@ -56,7 +56,7 @@ private fun boardSeq(w: Sequence<String>): List<Board> = w.drop(1).chunked(6).ma
 
 private fun numsSeq(w: Sequence<String>): Sequence<Int> = w.first().splitToSequence(",").map { it.toInt() }
 
-class Board(val lines: List<String>) {
+private class Board(val lines: List<String>) {
 	val rows = lines
 		.drop(1)
 		.map { line ->

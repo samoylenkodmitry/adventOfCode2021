@@ -1,4 +1,4 @@
-package day01
+package day06
 
 import java.io.File
 
@@ -17,7 +17,7 @@ fun main() {
 	partTwo(input)
 }
 
-val cache = Array(9) { Array(257) { -1L } }
+private val cache = Array(9) { Array(257) { -1L } }
 
 private fun partOne(w: Sequence<String>) {
 	println(getInitailFishes(w).sumOf { cache[it.cycleDay][80] })
@@ -73,7 +73,7 @@ private fun simulateOneDay(fishes: MutableList<Fish>): MutableList<Fish> {
 	return fishChildren
 }
 
-class Fish(var cycleDay: Int) {
+private class Fish(var cycleDay: Int) {
 	fun liveAndBreed(newFish: MutableList<Fish>) {
 		when (cycleDay) {
 			0 -> {

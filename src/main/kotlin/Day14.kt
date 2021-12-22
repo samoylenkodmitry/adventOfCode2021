@@ -1,4 +1,4 @@
-package day01
+package day14
 
 import java.io.File
 
@@ -44,14 +44,14 @@ private fun partTwo(w: Sequence<String>) {
 	simulate(w, 40)
 }
 
-data class Rule(val ft: String, val ins: Char) {
+private data class Rule(val ft: String, val ins: Char) {
 	fun make(rules: Map<String, Rule>): Collection<Rule> = buildList {
 		rules["${ft[0]}$ins"]?.let { add(it) }
 		rules["$ins${ft[1]}"]?.let { add(it) }
 	}
 }
 
-data class Simulation(val steps: Int, val what: Rule)
+private data class Simulation(val steps: Int, val what: Rule)
 
 private fun simulate(w: Sequence<String>, steps: Int) {
 	val rules = getRules(w)

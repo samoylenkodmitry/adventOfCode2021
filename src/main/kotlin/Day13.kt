@@ -1,4 +1,4 @@
-package day01
+package day13
 
 import java.io.File
 
@@ -80,8 +80,8 @@ private fun partTwo(w: Sequence<String>) {
 
 }
 
-data class P(var x: Int, var y: Int)
-data class C(val a: Char, val pos: Int)
+private data class P(var x: Int, var y: Int)
+private data class C(val a: Char, val pos: Int)
 
 private fun getCmds(w: Sequence<String>): List<C> =
 	w.dropWhile { it.isNotBlank() }.drop(1).map { it.split('=') }.map { C(it[0].last(), it[1].toInt()) }.toList()

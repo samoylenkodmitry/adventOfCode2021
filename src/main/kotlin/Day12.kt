@@ -1,4 +1,4 @@
-package day01
+package day12
 
 import java.io.File
 
@@ -44,7 +44,7 @@ private fun partOne(w: Sequence<String>) {
 	println("paths count: $endCount")
 }
 
-class Entry(val v: String, val visited: Map<String, Int>, val canVisit: Boolean, val path: String)
+private class Entry(val v: String, val visited: Map<String, Int>, val canVisit: Boolean, val path: String)
 
 private fun partTwo(w: Sequence<String>) {
 	val adj = adj(w)
@@ -79,7 +79,7 @@ private fun adj(w: Sequence<String>): MutableMap<String, MutableSet<String>> {
 	return adj
 }
 
-fun MutableMap<String, MutableSet<String>>.connect(s1: String, s2: String) {
+private fun MutableMap<String, MutableSet<String>>.connect(s1: String, s2: String) {
 	computeIfAbsent(s1, { mutableSetOf() }).add(s2)
 	computeIfAbsent(s2, { mutableSetOf() }).add(s1)
 }

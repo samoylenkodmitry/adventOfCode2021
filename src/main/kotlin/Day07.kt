@@ -1,4 +1,4 @@
-package day01
+package day07
 
 import java.io.File
 import kotlin.math.abs
@@ -55,7 +55,7 @@ private fun partTwo(w: Sequence<String>) {
 	println("min: $min minJ: $minJ")
 }
 
-fun fuel2(n: Int): Int {
+private fun fuel2(n: Int): Int {
 	//1 2 3 4 5
 	//1  =1, n=1
 	//1 2 =3, n=2

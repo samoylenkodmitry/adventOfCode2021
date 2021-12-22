@@ -1,4 +1,4 @@
-package day01
+package day03
 
 import java.io.File
 
@@ -77,7 +77,7 @@ private fun partTwo(w: Sequence<String>) {
 	println("ox: $ox co: $co ox: ${ox.toInt(2)}, co: ${co.toInt(2)}, mul: ${ox.toInt(2) * co.toInt(2)}")
 }
 
-fun Sequence<String>.filterByBit(index: Int, compare: (Int, Int) -> Boolean): Sequence<String> {
+private fun Sequence<String>.filterByBit(index: Int, compare: (Int, Int) -> Boolean): Sequence<String> {
 	val counts = this.map { it[index] }.groupingBy { it }.eachCount()
 	if (counts.size <= 1) {
 		return this

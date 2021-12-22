@@ -1,4 +1,4 @@
-package day01
+package day05
 
 import java.io.File
 
@@ -57,7 +57,7 @@ private fun calcCount(lines: Sequence<Line>): Int {
 	return map.sumOf { it.count { num -> num > 1 } }
 }
 
-class Line(line: String, private val points: List<Point>) {
+private class Line(line: String, private val points: List<Point>) {
 	init {
 		if (points.size < 2) throw Error("wtf: $line")
 	}
@@ -108,6 +108,6 @@ class Line(line: String, private val points: List<Point>) {
 	}
 }
 
-class Point(val xy: List<Int>)
+private class Point(val xy: List<Int>)
 
 

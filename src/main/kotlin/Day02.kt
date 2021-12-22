@@ -1,4 +1,4 @@
-package day01
+package day02
 
 import java.io.File
 
@@ -16,7 +16,7 @@ private val test = """
 """.trimIndent().splitToSequence("\n").map { it.trim() }
 	.map { it.split(" ") }
 
-fun <Context> List<String>.newCommand(f: Exe<Context>, u: Exe<Context>, d: Exe<Context>): Command<Context> {
+private fun <Context> List<String>.newCommand(f: Exe<Context>, u: Exe<Context>, d: Exe<Context>): Command<Context> {
 	val s = this[1].toInt()
 	return when (this[0]) {
 		"forward" -> Command(s, f)
@@ -25,11 +25,11 @@ fun <Context> List<String>.newCommand(f: Exe<Context>, u: Exe<Context>, d: Exe<C
 	}
 }
 
-fun interface Exe<Context> {
+private fun interface Exe<Context> {
 	fun exe(s: Int, ctx: Context)
 }
 
-class Command<Context>(val s: Int, val f: Exe<Context>) {
+private class Command<Context>(val s: Int, val f: Exe<Context>) {
 	fun exe(c: Context) = f.exe(s, c)
 }
 

@@ -1,4 +1,4 @@
-package day01
+package day11
 
 import java.io.File
 
@@ -53,7 +53,7 @@ private fun partTwo(w: Sequence<String>) {
 	}
 }
 
-fun step(map: List<MutableList<Int>>, visited: Array<Array<Boolean>>): Int {
+private fun step(map: List<MutableList<Int>>, visited: Array<Array<Boolean>>): Int {
 	for (y in 0..9) {
 		for (x in 0..9) {
 			map[y][x]++
@@ -73,7 +73,7 @@ fun step(map: List<MutableList<Int>>, visited: Array<Array<Boolean>>): Int {
 	return count
 }
 
-fun flash(map: List<MutableList<Int>>, y: Int, x: Int, flashed: Array<Array<Boolean>>): Int {
+private fun flash(map: List<MutableList<Int>>, y: Int, x: Int, flashed: Array<Array<Boolean>>): Int {
 	if (flashed[y][x]) return 0
 	map[y][x]++
 	val v = map[y][x]

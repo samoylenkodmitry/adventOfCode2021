@@ -1,4 +1,4 @@
-package day01
+package day10
 
 import java.io.File
 import java.util.*
@@ -60,7 +60,7 @@ private fun partTwo(w: Sequence<String>) {
 	println(result)
 }
 
-fun findErrChar(inp: String): Pair<Char, Char> {
+private fun findErrChar(inp: String): Pair<Char, Char> {
 	val st = Stack<Char>()
 
 	for (i in 0..inp.lastIndex) {
@@ -76,7 +76,7 @@ fun findErrChar(inp: String): Pair<Char, Char> {
 	return Pair('x', 'x')
 }
 
-fun findContinue(inp: String): String {
+private fun findContinue(inp: String): String {
 	val st = Stack<Char>()
 
 	for (i in 0..inp.lastIndex) {
@@ -102,7 +102,7 @@ fun findContinue(inp: String): String {
     }: 1197 points.
     >: 25137 points.
  */
-fun points(c: Char) = when (c) {
+private fun points(c: Char) = when (c) {
 	')' -> 3
 	']' -> 57
 	'}' -> 1197
@@ -119,7 +119,7 @@ fun points(c: Char) = when (c) {
     >: 4 points.
 
  */
-fun points2(c: Char) = when (c) {
+private fun points2(c: Char) = when (c) {
 	')' -> 1
 	']' -> 2
 	'}' -> 3
@@ -128,19 +128,19 @@ fun points2(c: Char) = when (c) {
 	else -> throw Error("can't be a reward $c")
 }
 
-fun invalid(c1: Char, c2: Char): Boolean =
+private fun invalid(c1: Char, c2: Char): Boolean =
 	(c2 == ']' && c1 != '[') ||
 		(c2 == '}' && c1 != '{') ||
 		(c2 == ')' && c1 != '(') ||
 		(c2 == '>' && c1 != '<')
 
-fun closed(c1: Char, c2: Char): Boolean =
+private fun closed(c1: Char, c2: Char): Boolean =
 	(c2 == ']' && c1 == '[') ||
 		(c2 == '}' && c1 == '{') ||
 		(c2 == ')' && c1 == '(') ||
 		(c2 == '>' && c1 == '<')
 
-fun expected(c: Char): Char = when (c) {
+private fun expected(c: Char): Char = when (c) {
 	'(' -> ')'
 	'[' -> ']'
 	'{' -> '}'

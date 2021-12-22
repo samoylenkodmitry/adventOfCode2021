@@ -1,4 +1,4 @@
-package day01
+package day08
 
 import java.io.File
 
@@ -48,7 +48,7 @@ private fun partTwo(w: Sequence<String>) {
 	println("result : $sum")
 }
 
-class TaskAndTest(text: String) {
+private class TaskAndTest(text: String) {
 	val result: Int
 
 	init {
@@ -64,7 +64,7 @@ class TaskAndTest(text: String) {
 
 }
 
-class Mapping {
+private class Mapping {
 
 	val segmentToChar = mutableMapOf<Char, Char>()
 
@@ -136,7 +136,7 @@ b    .  b    .  .    c  b    c  b    c
 	fun nine(inp: String) = inp.len(6) && inp.has('b', 'f', 'c') && inp.not('e')
 }
 
-class Num(val value: String) {
+private class Num(val value: String) {
 	/*
  aaaa
 b    c

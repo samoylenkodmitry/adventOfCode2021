@@ -1,4 +1,4 @@
-package day01
+package day09
 
 import java.io.File
 
@@ -45,7 +45,7 @@ private fun partTwo(w: Sequence<String>) {
 	println("part 2: $result")
 }
 
-fun countDfs(
+private fun countDfs(
 	x: Int, y: Int,
 	visited: Array<Array<Boolean>>,
 	map: List<List<Int>>
@@ -74,7 +74,7 @@ private fun findRiskPoints(map: List<List<Int>>): MutableList<Pair<Int, Int>> =
 private fun createMap(w: Sequence<String>): List<List<Int>> =
 	w.map { it.map { it - '0' } }.toList()
 
-fun lower(map: List<List<Int>>, x: Int, y: Int, v: Int): Boolean {
+private fun lower(map: List<List<Int>>, x: Int, y: Int, v: Int): Boolean {
 	var res = true
 	if (x > 0) res = res and (map[y][x - 1] > v)
 	if (y > 0) res = res and (map[y - 1][x] > v)
